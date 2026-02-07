@@ -11,7 +11,7 @@ export default function NavbarComponent() {
           <Link href="/donuts">Donuts</Link>
         </li>
         <li>
-          <Link href="/create-donut">Crear Donut</Link>
+          <Link href="/create">Crear Donut</Link>
         </li>
         <li>
           <Link href="/favorites">Favoritos</Link>

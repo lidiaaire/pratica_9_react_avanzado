@@ -9,11 +9,15 @@ export default function CreateDonutFormComponent({ onCreate }) {
     e.preventDefault();
 
     const newDonut = {
-      id: Date.now().toString(),
-      nombre,
-      sabor,
-      precio,
+      name: nombre,
+      description: sabor,
+      price: Number(precio),
+      isAvailable: true,
     };
+    if (!nombre || !sabor || !precio) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
     onCreate(newDonut);
   };
 

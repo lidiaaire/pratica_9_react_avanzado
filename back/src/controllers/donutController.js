@@ -22,11 +22,13 @@ const getDonut = async (req, res) => {
 };
 
 const createDonut = async (req, res) => {
+  console.log("REQ BODY:", req.body);
   try {
-    const newDonut = await donutService.createDonut(req.body);
-    res.status(201).json(newDonut);
+    const donut = await donutService.createDonut(req.body);
+    res.status(201).json(donut);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("CREATE DONUT ERROR:", error.message);
+    res.status(400).json({ message: error.message });
   }
 };
 

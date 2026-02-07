@@ -1,3 +1,4 @@
+import { createDonut } from "@/api/DonutsApi";
 import CreateDonutFormComponent from "../../components/Donuts/CreateDonutFormComponent/CreateDonutFormComponent";
 import MenuComponent from "../../components/MenuComponent/MenuComponent";
 import { DonutsContext } from "../../core/donuts/DonutsContext";
@@ -6,10 +7,9 @@ import React, { useContext } from "react";
 
 export default function CreateDonutPage() {
   const router = useRouter();
-  const { createDonut } = useContext(DonutsContext);
 
-  const handleCreate = (newDonut) => {
-    createDonut(newDonut);
+  const handleCreate = async (newDonut) => {
+    await createDonut(newDonut);
     router.push("/donuts");
   };
 

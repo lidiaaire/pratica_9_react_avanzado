@@ -7,3 +7,22 @@ export const getDonuts = async () => {
   }
   return response.json();
 };
+
+export const createDonut = async (newDonut) => {
+  const response = await fetch(`${BASE_URL}/donuts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newDonut),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.error("BACKEND ERROR:", data);
+    throw new Error("Error creating donut");
+  }
+
+  return data;
+};
