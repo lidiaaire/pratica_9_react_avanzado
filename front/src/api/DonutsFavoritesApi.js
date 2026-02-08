@@ -1,15 +1,17 @@
-const BASE_URL = "http://localhost:9000";
+const BASE_URL = "http://localhost:9000/api/favorites";
 
+// Obtener todos los favoritos
 export const getFavorites = async () => {
-  const response = await fetch(`${BASE_URL}/favorites`);
+  const response = await fetch(BASE_URL);
   if (!response.ok) {
     throw new Error("Error fetching favorites");
   }
   return response.json();
 };
 
+// Añadir un faovirto (donutId)
 export const addFavorite = async (donutId) => {
-  const response = await fetch(`${BASE_URL}/favorites`, {
+  const response = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,14 +26,13 @@ export const addFavorite = async (donutId) => {
   return response.json();
 };
 
+// Eliminar un favorito por su ID
 export const removeFavorite = async (favoriteId) => {
-  const response = await fetch(`${BASE_URL}/favorites/${favoriteId}`, {
+  const response = await fetch(`${BASE_URL}/${favoriteId}`, {
     method: "DELETE",
   });
-
   if (!response.ok) {
     throw new Error("Error removing favorite");
   }
-
-  return response.json();
+  return;
 };

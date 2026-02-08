@@ -1,36 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getDonuts } from "@/api/DonutsApi";
-import {
-  getFavorites,
-  addFavorite,
-  removeFavorite,
-} from "@/api/DonutsFavoritesApi";
 import MenuComponent from "@/components/MenuComponent/MenuComponent";
+import { FavoritesContext } from "@/core/favorites/FavoritesContext";
 
 export default function Home() {
+  // Donuts que obtenemos del backend
   const [donuts, setDonuts] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  // Estado de carga global de la pagina
+  const [loading, setLoading] = useState(true);
+  // Estado de error para fallos de red o de backend
+  const [error, setError] = useState(null);
 
+  // Estado de favoritos sincronizado con el backend
+  const { favorites, addToFavorites, removeFromFavorites } =
+    useContext(FavoritesContext);
+
+  // Cargar donuts y favoritos al montar el componente
+  // SOLO SE EJECUTA UNA VEZ AL INICIAR LA PAGINA
   useEffect(() => {
-    getDonuts().then(setDonuts);
-    getFavorites().then(setFavorites);
+    const loadDonuts = async () => {
+      try {
+        setLoading(true);
+        const donutsData = await getDonuts();
+        setDonuts(donutsData);
+      } catch (error) {
+        setError("Error al cargar los donuts.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDonuts();
   }, []);
 
-  const handleAddFavorite = async (donutId) => {
-    const newFav = await addFavorite(donutId);
-    setFavorites((prev) => [...prev, newFav]);
-  };
+  // Renderizado condicional basado en el estado de carga y error
+  if (loading) {
+    return <p> Cargando donuts ..</p>;
+  }
 
-  const handleRemoveFavorite = async (donutId) => {
-    const favoriteToRemove = favorites.find((fav) => fav.donutId === donutId);
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-    if (!favoriteToRemove) return;
-
-    await removeFavorite(favoriteToRemove.id);
-
-    setFavorites((prev) => prev.filter((fav) => fav.donutId !== donutId));
-  };
-
+  // Renderizado principal de la home
   return (
     <main>
       <header>
@@ -43,8 +55,8 @@ export default function Home() {
         <MenuComponent
           donuts={donuts}
           favorites={favorites}
-          onAddFavorite={handleAddFavorite}
-          onRemoveFavorite={handleRemoveFavorite}
+          onAddFavorite={addToFavorites}
+          onRemoveFavorite={removeFromFavorites}
         />
       </section>
     </main>

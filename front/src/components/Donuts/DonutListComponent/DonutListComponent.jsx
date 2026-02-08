@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import DonutItemComponent from "../DonutItemComponent/DonutItemComponent";
-import { DonutsContext } from "../../../core/donuts/DonutsContext";
 
-export default function DonutListComponent() {
-  const { donuts } = useContext(DonutsContext);
+export default function DonutListComponent({ donuts = [] }) {
   return (
     <div>
-      <h2>Listado de Donuts </h2>
+      <h2>Listado de Donuts</h2>
 
       {donuts.map((donut) => (
-        <DonutItemComponent key={donut.id} donut={donut} />
+        <DonutItemComponent key={donut._id} donut={donut} />
       ))}
     </div>
   );

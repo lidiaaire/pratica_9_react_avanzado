@@ -1,40 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Donuts App
 
-## Getting Started
+Aplicación full‑stack para la gestión de donuts y favoritos, construida con **Next.js (Frontend)**, **Node.js/Express (Backend)** y **MongoDB**. El proyecto demuestra un flujo real de producto: CRUD completo, persistencia real, reglas de negocio en backend y UI sincronizada.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Funcionalidades
+
+- **Donuts**
+  - Listar donuts
+  - Ver detalle
+  - Crear, editar y eliminar
+
+- **Favoritos**
+  - Añadir y quitar favoritos
+  - Persistencia en MongoDB
+  - Prevención de duplicados (regla de negocio en backend)
+
+- **UX básica de producto**
+  - Estados de carga
+  - Manejo de errores controlado
+  - UI reactiva sin recargas
+
+---
+
+## 🧱 Arquitectura
+
+### Frontend (Next.js)
+
+- **pages/**: páginas claras y responsables del estado
+- **components/**: componentes visuales reutilizables
+- **api/**: capa intermedia para llamadas HTTP (fetch)
+- **core/**: contextos y lógica compartida
+
+**Principios aplicados**:
+
+- Separación de responsabilidades
+- La página orquesta; los componentes visuales no hacen fetch
+- Estado levantado y sincronizado con backend
+
+### Backend (Node.js + Express)
+
+- **models/**: esquemas de Mongoose
+- **services/**: lógica de negocio (reglas reales)
+- **controllers/**: manejo de req/res
+- **routes/**: rutas REST coherentes
+
+**Flujo**:
+
+```
+Route → Controller → Service → Model → MongoDB
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 🗄️ Modelo de datos (MongoDB)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Donut
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- name (String, required)
+- price (Number, required)
+- description (String)
+- isAvailable (Boolean)
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### DonutFavorite
 
-## Learn More
+- donutId (ObjectId → Donut, **unique**)
 
-To learn more about Next.js, take a look at the following resources:
+> Regla de negocio: un donut solo puede existir una vez en favoritos.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔌 Endpoints
 
-## Deploy on Vercel
+### Donuts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /donuts`
+- `POST /donuts`
+- `GET /donuts/:id`
+- `PUT /donuts/:id`
+- `DELETE /donuts/:id`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Favoritos
+
+- `GET /api/favorites`
+- `POST /api/favorites`
+- `DELETE /api/favorites/:id`
+
+---
+
+## ▶️ Cómo levantar el proyecto
+
+### Backend
+
+```bash
+cd back
+npm install
+npm start
+```
+
+Servidor en: `http://localhost:9000`
+
+### Frontend
+
+```bash
+cd front
+npm install
+npm run dev
+```
+
+App en: `http://localhost:3000`
+
+---
+
+## 🧠 Decisiones técnicas destacadas
+
+- Regla de no duplicados implementada en **service + índice único en Mongo**
+- Frontend resiliente ante errores de backend
+- Sin booleanos falsos en memoria para favoritos
+- IDs reales de Mongo (`_id`) usados en todo el flujo
+
+---
+
+## 📌 Estado del proyecto
+
+- Funcionalidad completa
+- Arquitectura limpia
+- Flujo de producto real
+- Listo para estilos y mejoras UX
+
+---
+
+## 👤 Autora
+
+Desarrollado por **lidi** como proyecto final de React / Full‑Stack.

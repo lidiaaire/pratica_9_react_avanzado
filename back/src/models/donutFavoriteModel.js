@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
-const favoriteSchema = new mongoose.Schema(
-  {
-    donutId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Donut",
-      required: true,
-    },
+const donutFavoriteSchema = new mongoose.Schema({
+  donutId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Donut",
+    required: true,
+    unique: true, // Esto asegura que un mismo donut no pueda ser añadido varias veces a favoritos
   },
-  {
-    timestamps: true,
-  },
-);
+});
 
-module.exports = mongoose.model("Favorite", favoriteSchema);
+module.exports = mongoose.model("DonutFavorite", donutFavoriteSchema);

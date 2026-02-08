@@ -1,11 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const donutController = require("../controllers/donutController");
 
-router.get("/", donutController.getDonuts);
-router.get("/:id", donutController.getDonut);
-router.post("/", donutController.createDonut);
-router.put("/:id", donutController.updateDonut);
-router.delete("/:id", donutController.deleteDonut);
+const {
+  getDonuts,
+  getDonut,
+  createDonut,
+  updateDonut,
+  deleteDonut,
+} = require("../controllers/donutController");
+
+// Obtener todos los donuts
+router.get("/", getDonuts);
+
+// Obtener un donut por ID
+router.get("/:id", getDonut);
+
+// Crear donut
+router.post("/", createDonut);
+
+// Actualizar donut
+router.put("/:id", updateDonut);
+
+// Eliminar donut
+router.delete("/:id", deleteDonut);
 
 module.exports = router;

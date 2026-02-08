@@ -6,15 +6,14 @@ export default function MenuComponent({
   onAddFavorite,
   onRemoveFavorite,
 }) {
-  const isFavorite = (donutId) => favorites.some((fav) => fav.id === donutId);
-
-  const getFavorite = (donutId) =>
-    favorites.find((fav) => fav.donutId._id === donutId);
+  const isFavorite = (donutId) =>
+    favorites.some((fav) => fav.donutId._id === donutId);
 
   return (
     <div>
       {donuts.map((donut) => {
         const favorite = isFavorite(donut._id);
+
         return (
           <div key={donut._id}>
             <span>{donut.name}</span>
