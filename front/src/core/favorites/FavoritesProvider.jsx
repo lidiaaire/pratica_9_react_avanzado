@@ -12,38 +12,54 @@ export default function FavoritesProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Cargar favoritos UNA VEZ
-  useEffect(() => {
-    const loadFavorites = async () => {
-      try {
-        setLoading(true);
-        const data = await getFavorites();
-        setFavorites(data);
-      } catch (error) {
-        setError("Error al cargar los favoritos");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadFavorites();
-  }, []);
-
-  // Añadir favorito (fuente única de verdad)
-  const addToFavorites = async (donutId) => {
+  /**
+   * ============================
+   * CARGA DE FAVORITOS
+   * ============================
+   * Fuente única de verdad
+   */
+  const loadFavorites = async () => {
     try {
-      const newFavorite = await addFavorite(donutId);
-      setFavorites((prev) => [...prev, newFavorite]);
+      setLoading(true);
+      const data = await getFavorites();
+      setFavorites(data);
     } catch (error) {
-      throw error;
+      setError("Error al cargar los favoritos");
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Eliminar favorito
+  // Cargar favoritos UNA VEZ al iniciar la app
+  useEffect(() => {
+    loadFavorites();
+  }, []);
+
+  /**
+   * ============================
+   * AÑADIR FAVORITO
+   * ============================
+   * Tras añadir, recargamos favoritos populateados
+   */
+  const addToFavorites = async (donutId) => {
+    try {
+      await addFavorite(donutId);
+      await loadFavorites();
+    } catch (error) {
+      setError("Error al añadir el favorito");
+    }
+  };
+
+  /**
+   * ============================
+   * ELIMINAR FAVORITO
+   * ============================
+   * Tras eliminar, recargamos favoritos
+   */
   const removeFromFavorites = async (favoriteId) => {
     try {
       await removeFavorite(favoriteId);
-      setFavorites((prev) => prev.filter((fav) => fav._id !== favoriteId));
+      await loadFavorites();
     } catch (error) {
       setError("Error al eliminar el favorito");
     }

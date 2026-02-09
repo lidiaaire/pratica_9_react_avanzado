@@ -1,14 +1,21 @@
 import React from "react";
 import DonutItemComponent from "../DonutItemComponent/DonutItemComponent";
+import styles from "./DonutListComponent.module.css";
 
 export default function DonutListComponent({ donuts = [] }) {
   return (
-    <div>
-      <h2>Listado de Donuts</h2>
+    <section className={styles.container}>
+      <h2 className={styles.title}>Listado de Donuts</h2>
 
-      {donuts.map((donut) => (
-        <DonutItemComponent key={donut._id} donut={donut} />
-      ))}
-    </div>
+      {donuts.length === 0 ? (
+        <p className={styles.empty}>No hay donuts disponibles</p>
+      ) : (
+        <div className={styles.list}>
+          {donuts.map((donut) => (
+            <DonutItemComponent key={donut._id} donut={donut} />
+          ))}
+        </div>
+      )}
+    </section>
   );
 }

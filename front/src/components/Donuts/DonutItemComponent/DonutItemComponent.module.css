@@ -1,0 +1,33 @@
+.card {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.name {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.price {
+  color: #6b7280;
+  font-weight: normal;
+}
+
+.link {
+  font-size: 14px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}

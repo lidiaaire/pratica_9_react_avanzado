@@ -1,0 +1,29 @@
+.card {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.price {
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.button {
+  background-color: #ef4444;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #dc2626;
+}

@@ -19,13 +19,19 @@ export default function MenuComponent({
             <span>{donut.name}</span>
 
             {!favorite && (
-              <button onClick={() => onAddFavorite(donut._id)}>
+              <button
+                className="btn-success"
+                onClick={() => onAddFavorite(donut._id)}
+              >
                 Añadir a favoritos
               </button>
             )}
 
             {favorite && (
-              <button onClick={() => onRemoveFavorite(donut._id)}>
+              <button
+                className="btn-danger"
+                onClick={() => onRemoveFavorite(donut._id)}
+              >
                 Quitar de favoritos
               </button>
             )}

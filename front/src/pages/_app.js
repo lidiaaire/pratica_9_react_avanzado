@@ -1,7 +1,7 @@
 import NavBarComponent from "@/components/NavBarComponent/NavBarComponent";
-import DonutsProvider from "../core/donuts/DonutsProvider";
-import FavoritesProvider from "../core/favorites/FavoritesProvider";
-
+import layout from "@/styles/layout.module.css";
+import DonutsProvider from "@/core/donuts/DonutsProvider";
+import FavoritesProvider from "@/core/favorites/FavoritesProvider";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
@@ -9,7 +9,9 @@ export default function App({ Component, pageProps }) {
     <DonutsProvider>
       <FavoritesProvider>
         <NavBarComponent />
-        <Component {...pageProps} />
+        <main className={layout.container}>
+          <Component {...pageProps} />
+        </main>
       </FavoritesProvider>
     </DonutsProvider>
   );

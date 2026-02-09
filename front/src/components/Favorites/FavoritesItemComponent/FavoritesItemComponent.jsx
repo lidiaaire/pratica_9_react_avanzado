@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./FavoritesItemComponent.module.css";
 
 export default function FavoritesItemComponent({ favorite, onRemoveFavorite }) {
   const donut = favorite.donutId;
@@ -6,18 +7,16 @@ export default function FavoritesItemComponent({ favorite, onRemoveFavorite }) {
   if (!donut) return null;
 
   return (
-    <div>
-      <p>{donut.name}</p>
-      <p>Precio: {donut.price} €</p>
+    <article className={styles.card}>
+      <p className={styles.name}>{donut.name}</p>
+      <p className={styles.price}>Precio: {donut.price} €</p>
 
       <button
-        onClick={() => {
-          console.log("BORRAR FAVORITO:", favorite._id);
-          onRemoveFavorite(favorite._id);
-        }}
+        className="btn-danger"
+        onClick={() => onRemoveFavorite(favorite._id)}
       >
         Eliminar
       </button>
-    </div>
+    </article>
   );
 }

@@ -1,0 +1,18 @@
+.navbar {
+  width: 100%;
+  background-color: #1f2933;
+}
+
+.navList {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}

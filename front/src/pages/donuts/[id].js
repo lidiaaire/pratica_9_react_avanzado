@@ -1,28 +1,19 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import MenuComponent from "../../components/MenuComponent/MenuComponent";
 import DonutDetailComponent from "../../components/Donuts/DonutDetailComponent/DonutDetailComponent";
 import EditDonutFormComponent from "../../components/Donuts/EditDonutFormComponent/EditDonutFormComponent";
 import { getDonutById, updateDonut, deleteDonut } from "@/api/DonutsApi";
+import styles from "@/styles/DonutDetailPage.module.css";
 
 export default function DonutDetailPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  // Estado del donut individual
   const [donut, setDonut] = useState(null);
-  // Estado de edición
   const [isEditing, setIsEditing] = useState(false);
-  // Estados reales de red
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /**
-   * ============================
-   * CARGA DEL DONUT POR ID
-   * ============================
-   * Esta página usa API directa, no Context
-   */
   useEffect(() => {
     if (!id) return;
 
@@ -41,39 +32,31 @@ export default function DonutDetailPage() {
     fetchDonut();
   }, [id]);
 
-  /**
-   * ============================
-   * RENDER CONDICIONAL
-   * ============================
-   */
   if (loading) return <p>Cargando donut...</p>;
   if (error) return <p>{error}</p>;
   if (!donut) return <p>Donut no encontrado</p>;
 
-  /**
-   * ============================
-   * RENDER PRINCIPAL
-   * ============================
-   */
   return (
-    <div>
-      <MenuComponent />
-      <h1>Donut Detail Page</h1>
+    <section className={styles.container}>
+      <h1 className={styles.title}>{donut.name}</h1>
 
       {!isEditing && (
         <>
           <DonutDetailComponent donut={donut} />
 
-          <button onClick={() => setIsEditing(true)}>Editar</button>
+          <div className={styles.actions}>
+            <button className="btn-primary">Editar</button>
 
-          <button
-            onClick={async () => {
-              await deleteDonut(donut._id); // 🔑 id real de Mongo
-              router.push("/donuts");
-            }}
-          >
-            Eliminar
-          </button>
+            <button
+              className="btn-danger"
+              onClick={async () => {
+                await deleteDonut(donut._id);
+                router.push("/donuts");
+              }}
+            >
+              Eliminar
+            </button>
+          </div>
         </>
       )}
 
@@ -87,6 +70,6 @@ export default function DonutDetailPage() {
           }}
         />
       )}
-    </div>
+    </section>
   );
 }
