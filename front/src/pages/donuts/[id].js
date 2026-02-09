@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import DonutDetailComponent from "../../components/Donuts/DonutDetailComponent/DonutDetailComponent";
-import EditDonutFormComponent from "../../components/Donuts/EditDonutFormComponent/EditDonutFormComponent";
+import DonutDetailComponent from "@/components/Donuts/DonutDetailComponent/DonutDetailComponent";
+import EditDonutFormComponent from "@/components/Donuts/EditDonutFormComponent/EditDonutFormComponent";
 import { getDonutById, updateDonut, deleteDonut } from "@/api/DonutsApi";
 import styles from "@/styles/DonutDetailPage.module.css";
 
@@ -45,9 +45,16 @@ export default function DonutDetailPage() {
           <DonutDetailComponent donut={donut} />
 
           <div className={styles.actions}>
-            <button className="btn-primary">Editar</button>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setIsEditing(true)}
+            >
+              Editar
+            </button>
 
             <button
+              type="button"
               className="btn-danger"
               onClick={async () => {
                 await deleteDonut(donut._id);
@@ -65,8 +72,9 @@ export default function DonutDetailPage() {
           donut={donut}
           onCancel={() => setIsEditing(false)}
           onSave={async (updatedDonut) => {
-            await updateDonut(updatedDonut);
-            setIsEditing(false);
+            const savedDonut = await updateDonut(updatedDonut);
+            setDonut(savedDonut); // 🔑 ACTUALIZA ESTADO
+            setIsEditing(false); // 🔑 VUELVE A DETALLE
           }}
         />
       )}

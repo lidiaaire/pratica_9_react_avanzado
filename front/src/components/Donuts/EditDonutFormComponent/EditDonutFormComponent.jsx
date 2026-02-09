@@ -1,39 +1,46 @@
 import React, { useState } from "react";
 
 export default function EditDonutFormComponent({ donut, onCancel, onSave }) {
-  const [nombre, setNombre] = useState(donut.nombre);
-  const [sabor, setSabor] = useState(donut.sabor);
-  const [precio, setPrecio] = useState(donut.precio);
+  const [name, setName] = useState(donut.name);
+  const [price, setPrice] = useState(donut.price);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     onSave({
       ...donut,
-      nombre,
-      sabor,
-      precio,
+      name,
+      price,
     });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Edit Donut Form Component</h2>
+      <h2>Editar Donut</h2>
 
       <div>
         <label>Nombre:</label>
-        <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
-      </div>
-      <div>
-        <label>Sabor:</label>
-        <input value={sabor} onChange={(e) => setSabor(e.target.value)} />
-      </div>
-      <div>
-        <label>Precio:</label>
-        <input value={precio} onChange={(e) => setPrecio(e.target.value)} />
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
       </div>
 
-      <button type="submit">Guardar </button>
+      <div>
+        <label>Precio:</label>
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(Number(e.target.value))}
+          required
+        />
+      </div>
+
+      <button type="submit" className="btn-primary">
+        Guardar
+      </button>
+
       <button type="button" onClick={onCancel}>
         Cancelar
       </button>
