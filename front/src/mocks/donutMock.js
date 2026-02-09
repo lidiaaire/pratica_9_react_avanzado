@@ -1,4 +1,5 @@
-// Simulated data for donuts
+// Simula los datos de un donut
+// Lo use para pruebas sin necesidad de tener el back corriendo
 
 export const donutsMock = [
   {

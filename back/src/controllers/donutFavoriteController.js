@@ -1,3 +1,8 @@
+// Donut Favorite Controller
+// Maneja las solicitudes HTTP relacionadas con los favoritos de donuts,
+// interactuando con el servicio de favoritos para realizar operaciones CRUD.
+// Cada función del controlador corresponde a una ruta específica y se encarga de procesar la solicitud,
+
 const donutFavoriteService = require("../services/donutFavoriteService");
 
 // Obtiene la lista de favoritos
@@ -37,8 +42,6 @@ const removeFavorite = async (req, res) => {
 
 module.exports = {
   getFavorites,
-
   addFavorite,
-
   removeFavorite,
 };

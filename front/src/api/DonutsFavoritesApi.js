@@ -1,3 +1,7 @@
+// API para manejar los favoritos de donuts
+// Proporciona funciones para obtener, agregar y eliminar favoritos desde el backend
+// Utiliza fetch para comunicarse con el backend en http://localhost:9000/api/favorites
+
 const BASE_URL = "http://localhost:9000/api/favorites";
 
 // Obtener todos los favoritos

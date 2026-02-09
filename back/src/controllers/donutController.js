@@ -1,5 +1,13 @@
+// Donut Controller
+// Maneja las solicitudes HTTP relacionadas con los donuts,
+// interactuando con el servicio de donuts para realizar operaciones CRUD.
+// Cada función del controlador corresponde a una ruta específica y se encarga de procesar la solicitud,
+
 const donutService = require("../services/donutService");
 
+// Controlador para manejar las operaciones CRUD de los donuts
+
+// Función para obtener todos los donuts
 const getDonuts = async (req, res) => {
   try {
     const donuts = await donutService.getAllDonuts();
@@ -9,6 +17,7 @@ const getDonuts = async (req, res) => {
   }
 };
 
+// Función para obtener un donut por su ID
 const getDonut = async (req, res) => {
   try {
     const donut = await donutService.getDonutById(req.params.id);
@@ -21,6 +30,7 @@ const getDonut = async (req, res) => {
   }
 };
 
+// Función para crear un nuevo donut
 const createDonut = async (req, res) => {
   console.log("REQ BODY:", req.body);
   try {
@@ -32,6 +42,7 @@ const createDonut = async (req, res) => {
   }
 };
 
+// Función para actualizar un donut existente
 const updateDonut = async (req, res) => {
   try {
     const updatedDonut = await donutService.updateDonut(
@@ -47,6 +58,7 @@ const updateDonut = async (req, res) => {
   }
 };
 
+// Función para eliminar un donut
 const deleteDonut = async (req, res) => {
   try {
     const deletedDonut = await donutService.deleteDonut(req.params.id);

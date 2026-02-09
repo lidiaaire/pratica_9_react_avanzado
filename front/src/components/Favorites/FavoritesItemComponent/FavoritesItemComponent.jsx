@@ -1,3 +1,7 @@
+// Componente que muestra un donut favorito
+// Recibe el favorito como prop
+// Muestra el nombre, precio y un botón para eliminar de favoritos
+
 import React from "react";
 import styles from "./FavoritesItemComponent.module.css";
 

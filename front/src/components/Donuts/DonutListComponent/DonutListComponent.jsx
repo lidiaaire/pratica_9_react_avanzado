@@ -1,3 +1,7 @@
+// Componente que muestra la lista de donuts
+// Recibe la lista de donuts como prop
+// Mapea cada donut a un DonutItemComponent
+
 import React from "react";
 import DonutItemComponent from "../DonutItemComponent/DonutItemComponent";
 import styles from "./DonutListComponent.module.css";

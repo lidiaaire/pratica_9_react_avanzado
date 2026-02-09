@@ -1,3 +1,6 @@
+// Donut routes
+// Endpoints para manejar las operaciones CRUD de los donuts
+
 const express = require("express");
 const router = express.Router();
 

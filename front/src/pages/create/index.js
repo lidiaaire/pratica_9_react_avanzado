@@ -1,9 +1,9 @@
+// Pagina de creacion de un nuevo donut
+// Crea el donut usando un formulario
+
 import { createDonut } from "@/api/DonutsApi";
 import CreateDonutFormComponent from "../../components/Donuts/CreateDonutFormComponent/CreateDonutFormComponent";
-import MenuComponent from "../../components/MenuComponent/MenuComponent";
-import { DonutsContext } from "../../core/donuts/DonutsContext";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
 
 export default function CreateDonutPage() {
   const router = useRouter();
@@ -15,7 +15,6 @@ export default function CreateDonutPage() {
 
   return (
     <div>
-      <MenuComponent />
       <h1>Create Donut Page</h1>
 
       <CreateDonutFormComponent onCreate={handleCreate} />

@@ -1,11 +1,9 @@
+// Archivo para manejar las llamadas a la API relacionadas con los donuts
+// Aquí definimos funciones para obtener, crear, actualizar y eliminar donuts desde el backend
+
 const BASE_URL = "http://localhost:9000/api";
 
-/**
- * ============================
- * GET /donuts
- * ============================
- * Obtener todos los donuts
- */
+// Obtenemos la lista de donuts desde el backend
 export const getDonuts = async () => {
   const response = await fetch(`${BASE_URL}/donuts`);
   if (!response.ok) {
@@ -14,12 +12,7 @@ export const getDonuts = async () => {
   return response.json();
 };
 
-/**
- * ============================
- * GET /donuts/:id
- * ============================
- * Obtener un donut por ID
- */
+// Obtenemos un donut específico por su ID
 export const getDonutById = async (id) => {
   const response = await fetch(`${BASE_URL}/donuts/${id}`);
   if (!response.ok) {
@@ -28,12 +21,7 @@ export const getDonutById = async (id) => {
   return response.json();
 };
 
-/**
- * ============================
- * POST /donuts
- * ============================
- * Crear un donut
- */
+// Creamos un nuevo donut
 export const createDonut = async (newDonut) => {
   const response = await fetch(`${BASE_URL}/donuts`, {
     method: "POST",
@@ -53,12 +41,7 @@ export const createDonut = async (newDonut) => {
   return data;
 };
 
-/**
- * ============================
- * PUT /donuts/:id
- * ============================
- * Actualizar un donut
- */
+// Actualizamos un donut existente
 export const updateDonut = async (updatedDonut) => {
   const response = await fetch(`${BASE_URL}/donuts/${updatedDonut._id}`, {
     method: "PUT",
@@ -75,12 +58,7 @@ export const updateDonut = async (updatedDonut) => {
   return response.json();
 };
 
-/**
- * ============================
- * DELETE /donuts/:id
- * ============================
- * Eliminar un donut
- */
+// Eliminamos un donut
 export const deleteDonut = async (id) => {
   const response = await fetch(`${BASE_URL}/donuts/${id}`, {
     method: "DELETE",

@@ -1,3 +1,6 @@
+// Proveedor de contexto para los donuts
+// Hace la llamada al back para cargar los donuts y compartirlos en toda la aplicación
+
 import React from "react";
 import { DonutsContext } from "./DonutsContext";
 

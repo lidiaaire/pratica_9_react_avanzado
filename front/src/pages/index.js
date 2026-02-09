@@ -1,3 +1,7 @@
+// Pagina principal
+// Carga donuts desde el back
+// Consume favoritos desde el context
+
 import React, { useContext, useEffect, useState } from "react";
 import { getDonuts } from "@/api/DonutsApi";
 import { FavoritesContext } from "@/core/favorites/FavoritesContext";
@@ -11,6 +15,7 @@ export default function Home() {
 
   const { favorites } = useContext(FavoritesContext);
 
+  // Carga INICIAL de donuts desde el back
   useEffect(() => {
     const loadDonuts = async () => {
       try {

@@ -1,3 +1,8 @@
+// Componente para crear un nuevo donut
+// Recibe una función onCreate como prop
+// Muestra un formulario con nombre, sabor y precio
+// Al enviar el formulario, llama a onCreate con el nuevo donut
+
 import React, { useState } from "react";
 
 export default function CreateDonutFormComponent({ onCreate }) {

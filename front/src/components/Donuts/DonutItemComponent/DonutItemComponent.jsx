@@ -1,3 +1,8 @@
+// Componente que muestra un donut individual
+// Recibe el donut como prop
+// Muestra el nombre, precio y un link al detalle
+// Permite añadir o quitar de favoritos usando el context
+
 import Link from "next/link";
 import { useContext } from "react";
 import { FavoritesContext } from "@/core/favorites/FavoritesContext";
@@ -7,14 +12,11 @@ export default function DonutItemComponent({ donut }) {
   const { favorites, addToFavorites, removeFromFavorites } =
     useContext(FavoritesContext);
 
-  // Comprobamos si este donut está en favoritos
   const favoriteFound = favorites.find((favorite) => {
-    // Caso 1: donutId es un string
     if (typeof favorite.donutId === "string") {
       return favorite.donutId === donut._id;
     }
 
-    // Caso 2: donutId viene populateado
     return favorite.donutId?._id === donut._id;
   });
 

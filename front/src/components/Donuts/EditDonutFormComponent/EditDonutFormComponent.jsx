@@ -1,3 +1,8 @@
+// Componente para editar un donut existente
+// Recibe el donut a editar, una función onCancel y una función onSave como props
+// Muestra un formulario con el nombre y precio del donut
+// Al enviar el formulario, llama a onSave con el donut actualizado
+
 import React, { useState } from "react";
 
 export default function EditDonutFormComponent({ donut, onCancel, onSave }) {

@@ -1,3 +1,7 @@
+// Proveedor de contexto para los favoritos
+// Hace la llamada al back para cargar los favoritos y compartirlos en toda la aplicación
+// También proporciona funciones para añadir y eliminar favoritos
+
 import { useEffect, useState } from "react";
 import { FavoritesContext } from "./FavoritesContext";
 import {
@@ -7,17 +11,10 @@ import {
 } from "@/api/DonutsFavoritesApi";
 
 export default function FavoritesProvider({ children }) {
-  // Estado global de favoritos
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /**
-   * ============================
-   * CARGA DE FAVORITOS
-   * ============================
-   * Fuente única de verdad
-   */
   const loadFavorites = async () => {
     try {
       setLoading(true);
@@ -30,17 +27,10 @@ export default function FavoritesProvider({ children }) {
     }
   };
 
-  // Cargar favoritos UNA VEZ al iniciar la app
   useEffect(() => {
     loadFavorites();
   }, []);
 
-  /**
-   * ============================
-   * AÑADIR FAVORITO
-   * ============================
-   * Tras añadir, recargamos favoritos populateados
-   */
   const addToFavorites = async (donutId) => {
     try {
       await addFavorite(donutId);
@@ -50,12 +40,6 @@ export default function FavoritesProvider({ children }) {
     }
   };
 
-  /**
-   * ============================
-   * ELIMINAR FAVORITO
-   * ============================
-   * Tras eliminar, recargamos favoritos
-   */
   const removeFromFavorites = async (favoriteId) => {
     try {
       await removeFavorite(favoriteId);

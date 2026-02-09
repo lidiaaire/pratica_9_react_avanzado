@@ -1,3 +1,10 @@
+// back
+// Configuración del servidor Express
+// Rutas para donuts y favoritos
+// Conexión a la base de datos MongoDB
+// CORS para permitir solicitudes desde el front
+// El servidor escucha en el puerto 9000
+
 const express = require("express");
 const cors = require("cors");
 
@@ -8,6 +15,7 @@ app.use(express.json());
 require("dotenv").config();
 
 const connectDB = require("./config/db");
+
 const donutRoutes = require("./routes/donutRoutes");
 const donutFavoriteRoutes = require("./routes/donutFavoriteRoutes");
 

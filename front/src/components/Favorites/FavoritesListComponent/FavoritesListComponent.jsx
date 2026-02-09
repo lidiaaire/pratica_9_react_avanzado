@@ -1,3 +1,7 @@
+// Componente que muestra la lista de donuts favoritos
+// Recibe la lista de favoritos y una función para eliminar un favorito como props
+// Mapea cada favorito a un FavoriteItemComponent
+
 import React from "react";
 import FavoriteItemComponent from "../FavoritesItemComponent/FavoritesItemComponent";
 import styles from "./FavoritesListComponent.module.css";

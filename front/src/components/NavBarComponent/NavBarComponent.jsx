@@ -1,3 +1,7 @@
+// Componente de navegación
+// Muestra enlaces a Home, Donuts, Crear Donut, Favoritos y Contacto
+// Existen en todas las paginas para no perder la navegación
+
 import Link from "next/link";
 import layout from "@/styles/layout.module.css";
 import styles from "./NavBarComponent.module.css";

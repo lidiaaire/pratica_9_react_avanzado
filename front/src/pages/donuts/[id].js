@@ -1,3 +1,8 @@
+// Pagina de detalle de un donut
+// Carga el donut desde el back usando el id de la url
+// Cada donut es un recurso invididual
+// Permite editar y eliminar el donut desde esta pagina
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import DonutDetailComponent from "@/components/Donuts/DonutDetailComponent/DonutDetailComponent";
@@ -73,8 +78,8 @@ export default function DonutDetailPage() {
           onCancel={() => setIsEditing(false)}
           onSave={async (updatedDonut) => {
             const savedDonut = await updateDonut(updatedDonut);
-            setDonut(savedDonut); // 🔑 ACTUALIZA ESTADO
-            setIsEditing(false); // 🔑 VUELVE A DETALLE
+            setDonut(savedDonut);
+            setIsEditing(false);
           }}
         />
       )}
